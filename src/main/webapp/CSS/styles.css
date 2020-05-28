@@ -1,0 +1,169 @@
+body {
+    padding: 0;
+    margin: 0;
+    background-color: floralwhite;
+    font-size: 25px;
+    overflow-x: hidden;
+}
+
+.slider-frame {
+    overflow: hidden;
+    height: 800px;
+    width: 1200px;
+    margin-left: 360px;
+    margin-top: 20px;
+}
+
+/*--------- Begin slide animatie ---------*/
+
+@-webkit-keyframes slide_animation {
+    0% {
+        left: 0px;
+    }
+    10% {
+        left: 0px;
+    }
+    20% {
+        left: 1200px;
+    }
+    30% {
+        left: 1200px;
+    }
+    40% {
+        left: 2400px;
+    }
+    50% {
+        left: 2400px;
+    }
+    60% {
+        left: 1200px;
+    }
+    70% {
+        left: 1200px;
+    }
+    80% {
+        left: 0px;
+    }
+    90% {
+        left: 0px;
+    }
+    100% {
+        left: 0px;
+    }
+}
+
+.slide-images {
+    width: 3600px;
+    height: 800px;
+    margin: 0 0 0 -2400px;
+    position: relative;
+    -webkit-animation-name: slide_animation;
+    -webkit-animation-duration: 33s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-direction: normal;
+    -webkit-animation-play-state: running;
+}
+
+.img-container {
+    height: 800px;
+    width: 1200px;
+    position: relative;
+    float: left;
+}
+
+/*------- Einde slideshow animatie ---------*/
+/*https://youtu.be/j18CH0Grhbw*/
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333333;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: whitesmoke;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: aquamarine;
+    color: black;
+}
+
+.active {
+    background-color: hotpink;
+}
+
+#KikaKappersLogo {
+    grid-column: 1;
+    height: 46px;
+    width: fit-content;
+}
+
+.navBar {
+    display: inline;
+    flex-direction: row;
+    width: 100%;
+    overflow: auto;
+}
+
+.titleCenter {
+    text-align: center;
+}
+
+.introText {
+    padding-left: 125px;
+    font-family: "Fira Code", monospace;
+    font-size: 25px;
+}
+
+h2 {
+    font-family: "Fira Code", monospace;
+    font-size: xx-large;
+    text-align: center;
+    text-shadow: 3px 3px 5px rgba(150, 150, 150, 1);
+}
+
+#PrijslijstNote {
+    text-align: center;
+    font-family: Arial, cursive;
+    font-weight: bold;
+}
+
+#telefoonNav {
+    margin-right: 0;
+    margin-left: 920px;
+    text-align: right;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.innerContainer {
+    width: 1200px;
+    background-color: whitesmoke;
+}
+
+.textContainer {
+    padding: 25px;
+}
+
+.footerSeparator {
+    display: flex;
+}
+
+h1, h2, h3, h4, p, a, div{
+    font-family: "Roboto", serif;
+}
