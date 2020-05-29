@@ -2,10 +2,11 @@ package org.IPASS.Afspraak;
 
 import org.IPASS.Gebruikers.Klant;
 import org.IPASS.Utils.Utils;
-
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class Afspraak {
+public class Afspraak implements Serializable {
+
     private LocalDateTime datumTijd;
     private int duratie;
     private Klant naam;
@@ -16,7 +17,16 @@ public class Afspraak {
         this.datumTijd = datumTijd;
         this.naam = naam;
         this.mail = mail;
+        this.duratie = duratie;
         this.status = "Onbeoordeeld";
+    }
+
+    public int getDuratie() {
+        return duratie;
+    }
+
+    public void setDuratie(int duratie) {
+        this.duratie = duratie;
     }
 
     public static boolean checkDatumTijd(LocalDateTime datumTijd) {

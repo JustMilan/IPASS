@@ -2,9 +2,6 @@
 <html lang="nl">
 <head>
     <meta charset="UTF-8" lang="nl">
-    <link rel="stylesheet" href="../css/datetimepickerform.css"/>
-    <script src="../JavaScript/datePicker.js"></script>
-
     <link rel="stylesheet" href="../CSS/styles.css">
     <title>Knipbeurt inplannen</title>
 </head>
@@ -12,7 +9,7 @@
     <h1 class=titleCenterKika>kappers</h1>
     <nav>
         <ul>
-            <li><img id=KikaKappersLogo src="Files/KikaKappersLogo.svg" alt="Kikakappers logo"></li>
+            <li><img id=KikaKappersLogo src="../Files/KikaKappersLogo.svg" alt="Kikakappers logo"></li>
             <li><a href="../index.html">Home</a>
             <li>
             <li><a href="OverOns.html">Over ons</a></li>
@@ -24,38 +21,24 @@
     </nav>
 </header>
 <body>
-<div class="container-calendar">
-    <div class="button-container-calendar">
-        <button id="previous">&#8249;</button>
-        <button id="next">&#8250;</button>
-        <h3 id="monthHeader"></h3>
-        <p id="yearHeader"></p>
-    </div>
+<div>
+    <form>
+        Selecteer de gewenste datum
+        <label for="datum"></label><input id="datum" type="date" size="20">
+        <button type="button" id="datumSubmit">Submit</button>
+    </form>
 
-    <table class="table-calendar" id="calendar">
-        <thead id="thead-month"></thead>
-        <tbody id="calendar-body"></tbody>
-    </table>
-
-    <div class="footer-container-calendar">
-        <label for="month">Jump To: </label>
-        <select id="month">
-            <option value=0>Jan</option>
-            <option value=1>Feb</option>
-            <option value=2>Mar</option>
-            <option value=3>Apr</option>
-            <option value=4>May</option>
-            <option value=5>Jun</option>
-            <option value=6>Jul</option>
-            <option value=7>Aug</option>
-            <option value=8>Sep</option>
-            <option value=9>Oct</option>
-            <option value=10>Nov</option>
-            <option value=11>Dec</option>
-        </select>
-        <select id="year"></select>
-    </div>
 </div>
-<p id="date-picked"></p>
+
+<div>
+    <form name="datumZoekForm" method="post" action="../../testdatumForm">
+        zoekDatum: <label>
+        <input type="date" name="zoekDatum"/>
+    </label> <br/>
+        <input type="submit" value="zoekDeDatum"/>
+    </form>
+</div>
+
+<script src="../JavaScript/datePicker.js"></script>
 </body>
 </html>
