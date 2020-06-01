@@ -2,23 +2,47 @@ package org.IPASS.Afspraak;
 
 import org.IPASS.Gebruikers.Klant;
 import org.IPASS.Utils.Utils;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public class Afspraak implements Serializable {
 
     private LocalDateTime datumTijd;
     private int duratie;
-    private Klant naam;
-    private Klant mail;
+    private Klant klant;
     private String status;
+    private static List<Afspraak> alleAfspraken = new ArrayList<>();
 
-    public Afspraak(LocalDateTime datumTijd, int duratie, Klant naam, Klant mail) {
+    public Afspraak(LocalDateTime datumTijd, int duratie, Klant klant) {
         this.datumTijd = datumTijd;
-        this.naam = naam;
-        this.mail = mail;
+        this.klant = klant;
         this.duratie = duratie;
         this.status = "Onbeoordeeld";
+        alleAfspraken.add(this);
+    }
+
+    public static Afspraak maakAfspraakAan(LocalDateTime datumTijd, int duratie, Klant klant) {
+        if (alleAfspraken.stream().noneMatch(e->e.getDatumTijd().equals(datumTijd))) {
+            return new Afspraak(datumTijd, duratie, klant);
+        } else {
+            return null;
+        }
+    }
+
+    public static Afspraak getAfspraakByTijd(LocalDateTime datumEnTijd) {
+        return alleAfspraken.stream().filter(e->e.getDatumTijd()==datumEnTijd).findFirst().orElse(null);
+    }
+
+    public static List<Afspraak> getAlleAfspraken() {
+        return alleAfspraken;
+    }
+
+    public static void setAlleAfspraken(List<Afspraak> alleAfspraken) {
+        Afspraak.alleAfspraken = alleAfspraken;
     }
 
     public int getDuratie() {
@@ -37,20 +61,12 @@ public class Afspraak implements Serializable {
         return status;
     }
 
-    public Klant getNaam() {
-        return naam;
+    public Klant getKlant() {
+        return klant;
     }
 
-    public void setNaam(Klant naam) {
-        this.naam = naam;
-    }
-
-    public Klant getMail() {
-        return mail;
-    }
-
-    public void setMail(Klant mail) {
-        this.mail = mail;
+    public void setKlant(Klant klant) {
+        this.klant = klant;
     }
 
     public String getStatus() {
@@ -67,5 +83,21 @@ public class Afspraak implements Serializable {
 
     public void setDatumTijd(LocalDateTime datumTijd) {
         this.datumTijd = datumTijd;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Afspraak afspraak = (Afspraak) o;
+        return duratie == afspraak.duratie &&
+                Objects.equals(datumTijd, afspraak.datumTijd) &&
+                Objects.equals(klant, afspraak.klant) &&
+                Objects.equals(status, afspraak.status);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(datumTijd, duratie, klant, status);
     }
 }

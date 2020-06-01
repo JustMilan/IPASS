@@ -1,4 +1,4 @@
-package org.IPASS.Servlets;
+package org.IPASS.webservices;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
