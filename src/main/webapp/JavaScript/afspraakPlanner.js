@@ -1,8 +1,6 @@
-document.getElementById('afspraakVoor').addEventListener('change', voegElementenToe)
-
+document.getElementById('afspraakVoor').addEventListener('change', voegElementenToe);
 
 function voegElementenToe() {
-
 
     resetAlleOpties();
 

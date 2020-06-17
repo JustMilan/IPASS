@@ -1,14 +1,76 @@
 package org.IPASS.Gebruikers;
 
+import org.IPASS.Afspraak.Afspraak;
+
+import javax.security.auth.Subject;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Kapper extends Gebruiker {
     private String wachtwoord;
+    private List<Afspraak> alleGeaccepteerdeAfspraken = new ArrayList<>();
 
     public Kapper(String voornaam, String achternaam, String email, String wachtwoord) {
-        super(voornaam, achternaam, email);
+        super(voornaam, achternaam, email, wachtwoord);
+        if (!Manager.krijgAlleKappers().contains(this)) {
+            Gebruiker.alleGebruikers.add(this);
+            Manager.krijgAlleKappers().add(this);
+        }
+    }
+
+    @Override
+    public String getName() {
+        return voornaam;
+    }
+
+    @Override
+    public boolean implies(Subject subject) {
+        return false;
+    }
+
+    public String krijgWachtwoord() {
+        return wachtwoord;
+    }
+
+    public void zetWachtwoord(String wachtwoord) {
+        if (wachtwoord.isBlank()) {
+            throw new IllegalArgumentException("Achternaam is niet ingevuld");
+        }
         this.wachtwoord = wachtwoord;
     }
 
-    public void setWachtwoord(String wachtwoord) {
-        this.wachtwoord = wachtwoord;
+    public String krijgVoornaam() {
+        return voornaam;
+    }
+
+    public void zetVoornaam(String voornaam) {
+        if (voornaam.isBlank()) {
+            throw new IllegalArgumentException("Voornaam is niet ingevuld");
+        }
+        this.voornaam = voornaam;
+    }
+
+    public String krijgAchternaam() {
+        return achternaam;
+    }
+
+    public void zetAchternaam(String achternaam) {
+        if (achternaam.isBlank()) {
+            throw new IllegalArgumentException("Achternaam is niet ingevuld");
+        }
+        this.achternaam = achternaam;
+    }
+
+    public String krijgEmail() {
+        return email;
+    }
+
+    public void zetEmail(String email) {
+        this.email = email;
+    }
+
+    public void voegAfspraakToe(Afspraak afspraak) {
+        alleGeaccepteerdeAfspraken.add(afspraak);
+        Manager.krijgAlleGeaccepteerdeAfspraken().add(afspraak);
     }
 }
