@@ -5,6 +5,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class MailTest {
+
     @Test
     public void checkMailDetecteertDubbeleAtEmailAdres() {
         assertFalse(Mail.checkMail("milan@@mail.com"));
