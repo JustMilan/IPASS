@@ -43,8 +43,6 @@ function filterRelevanteInfo(jsonData) {
         let datumTijdCel = row.insertCell(3);
         let afspraakVoorCel = row.insertCell(4);
         let afspraakTypeCel = row.insertCell(5);
-        let afspraakAccepteerCel = row.insertCell(6);
-        let afspraakWeigerCel = row.insertCell(7);
 
         voornaamCel.innerHTML = afsprakenArray[i][0];
         voornaamCel.id = "voornaamCel" + i;

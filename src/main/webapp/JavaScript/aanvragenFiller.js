@@ -88,11 +88,10 @@ function accepteer(buttonId) {
     fetch("/restservices/afspraakaanvragen/accepteren/" + buttonId, {method: 'PUT'})
         .then(function (response) {
             if (response.ok) {
-                return response.json();
+                window.alert("afspraak geaccepteerd");
+                window.location.reload(true);
             } else throw "Updaten is fout gegaan";
         })
-        .then(() => {window.alert("afspraak geaccepteerd");})
-        .then(() => {location.reload(true);})
         .catch(error => alert(error));
 }
 
@@ -101,10 +100,9 @@ function weiger(buttonId) {
     fetch("/restservices/afspraakaanvragen/weigeren/" + buttonId, {method: 'PUT'})
         .then(function (response) {
             if (response.ok) {
-                return response.json();
+                window.alert("afspraak geweigerd");
+                window.location.reload(true);
             } else throw "Updaten is fout gegaan";
         })
-        .then(() => {window.alert("afspraak geweigerd");})
-        .then(() => {location.reload(true);})
         .catch(error => alert(error));
 }
