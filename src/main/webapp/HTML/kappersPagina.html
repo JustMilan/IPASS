@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="../CSS/styles.css">
+    <link rel="shortcut icon" type="image/x-icon" href="../Files/favicon.ico">
     <title>kappers pagina</title>
 </head>
 <header>
@@ -9,12 +11,12 @@
     <nav class="navBar">
         <ul>
             <li><img id="KikaKappersLogo" src="../Files/KikaKappersLogo.svg" alt="Kika kappers logo"></li>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="HTML/OverOns.html">Over ons</a></li>
-            <li><a href="HTML/Expertise.html">Expertise</a></li>
-            <li><a href="HTML/Prijslijst.html">Prijslijst</a></li>
-            <li><a href="HTML/Contact.html">Contact</a></li>
-            <li><a href="HTML/AfspraakPlanner.html">Afspraak inplannen</a></li>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="OverOns.html">Over ons</a></li>
+            <li><a href="Expertise.html">Expertise</a></li>
+            <li><a href="Prijslijst.html">Prijslijst</a></li>
+            <li><a href="Contact.html">Contact</a></li>
+            <li><a href="AfspraakPlanner.html">Afspraak inplannen</a></li>
             <li id="telefoonNav"><a href="tel:+0713413002">071-3413002</a></li>
             <li><form><button id="uitloggen" name="uitloggen" value="uitloggen">uitloggen</button></form> </li>
         </ul>
@@ -23,6 +25,19 @@
 <body>
 INGELOGDDDDDDDDDDDDDDDD
 
+<div>
+    <p>
+        Beoordeel nieuw aangevraagde afspraken. <br>
+        <input type="button" onclick="location.href='/HTML/afspraakAanvragenBeoordelen.html';" value="Beoordelen!" />
+    </p>
+</div>
+
+<div>
+    <p>
+        Bekijk geaccepteerde afspraken <br>
+        <input type="button" onclick="location.href='/HTML/geaccepteerdeAfspraken.html';" value="Bekijk!" />
+    </p>
+</div>
 <script src="../JavaScript/uitloggen.js"></script>
 </body>
 </html>

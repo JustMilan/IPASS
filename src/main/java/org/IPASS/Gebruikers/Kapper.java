@@ -1,6 +1,7 @@
 package org.IPASS.Gebruikers;
 
 import org.IPASS.Afspraak.Afspraak;
+import org.IPASS.Data.Manager;
 
 import javax.security.auth.Subject;
 import java.util.ArrayList;

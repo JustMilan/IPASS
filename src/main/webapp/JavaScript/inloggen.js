@@ -7,7 +7,6 @@ function login(event) {
     fetch("/restservices/authentication", {method: 'POST', body: encData})
         .then(function (response) {
             if (response.ok) {
-                console.log(response);
                 return response.json();
             } else throw "Wrong email/password";
         })

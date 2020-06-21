@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8" lang="nl">
     <link rel="stylesheet" href="../CSS/styles.css">
+    <link rel="shortcut icon" type="image/x-icon" href="../Files/favicon.ico">
     <title>Knipbeurt inplannen</title>
 </head>
 <header>
@@ -10,67 +11,53 @@
     <nav>
         <ul>
             <li><img id=KikaKappersLogo src="../Files/KikaKappersLogo.svg" alt="Kikakappers logo"></li>
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="OverOns.html">Over ons</a></li>
-            <li><a href="Expertise.html">Expertise</a></li>
-            <li><a href="Prijslijst.html">Prijslijst</a></li>
-            <li><a href="Contact.html">Contact</a></li>
-            <li><a class="active" href="AfspraakPlanner.html"></a>afspraak aanvragen</li>
+            <li><a href="../index.html" aria-label="Ga naar de home pagina">Home</a></li>
+            <li><a href="OverOns.html" aria-label="Ga naar de <q over ons> pagina">Over ons</a></li>
+            <li><a href="Expertise.html" aria-label="Ga naar de <q Expertise> pagina">Expertise</a></li>
+            <li><a href="Prijslijst.html" aria-label="Ga naar de <q Prijslijst> pagina">Prijslijst</a></li>
+            <li><a href="Contact.html" aria-label="Ga naar de <q Contact> pagina">Contact</a></li>
+            <li><a class="active" href="AfspraakPlanner.html" aria-label="Ga naar de <q Afspraak aanvragen> pagina"></a>afspraak aanvragen</li>
         </ul>
     </nav>
 </header>
 <body>
 <div>
-    <form method="post" id="afspraakInplanForm" class="afspraakInplanForm">
-        <fieldset>
+    <form id="afspraakInplanForm" class="afspraakInplanForm">
             <label for="voornaam">Voornaam:</label>
-            <input type="text" id="voornaam" name="voornaam" placeholder="Voornaam" required pattern="[a-zA-Z0-9]+">
+            <input type="text" id="voornaam" name="voornaam" placeholder="Voornaam" pattern="[a-zA-Z0-9]+" required />
 
             <label for="achternaam">Achternaam:</label>
-            <input type="text" id="achternaam" name="achternaam" placeholder="Achternaam" required
-                   pattern="[a-zA-Z0-9]+">
+            <input type="text" id="achternaam" name="achternaam" placeholder="Achternaam" pattern="[a-zA-Z0-9]+" required />
 
             <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="E-mailadres" required>
+            <input type="email" id="email" name="email" placeholder="E-mailadres" required />
 
             <label for="gewensteDatumTijd">Gewenste datum</label>
-            <input type="datetime-local" id="gewensteDatumTijd" name="gewensteDatumTijd" value="" required>
+            <input type="datetime-local" id="gewensteDatumTijd" name="gewensteDatumTijd" placeholder="dd/mm/jjjj, hh:mm" required />
 
 
             <label for="afspraakVoor">Afspraak voor:</label>
-            <select id="afspraakVoor" name="afspraakVoor" required>
+            <select id="afspraakVoor" name="afspraakVoor" required >
                 <option disabled selected value> -- Selecteer een optie --</option>
-                <option value="dames" id="dames">Dames</option>
-                <option value="heren" id="heren">Heren</option>
-                <option value="kinderen" id="kinderen">Kinderen</option>
-                <option value="kleuren" id="kleuren">Kleuren</option>
-                <option value="peramanent" id="permanent">Permanent</option>
-                <option value="bruidskapsels" id="bruidskapsels">Bruidkapsels</option>
+                <option value="dames" id="dames" name="dames">Dames</option>
+                <option value="heren" id="heren" name="heren">Heren</option>
+                <option value="kinderen" id="kinderen" name="kinderen">Kinderen</option>
+                <option value="kleuren" id="kleuren" name="kleuren">Kleuren</option>
+                <option value="peramanent" id="permanent" name="permanent">Permanent</option>
+                <option value="bruidskapsels" id="bruidskapsels" name="bruidskapsels">Bruidkapsels</option>
             </select>
 
             <label for="afspraakType">afspraak type:</label>
-            <select id="afspraakType" name="afspraakType" required>
+            <select id="afspraakType" name="afspraakType" required >
                 <!--Opties worden gegenereerd door JS-->
             </select>
 
-            <button type="submit" id="afspraakSubmit" formmethod="post">Verzend aanvraag</button>
-        </fieldset>
+            <input type="button" id="afspraakSubmit" name="afspraakSubmit" value="afspraakSubmit"/>
     </form>
 </div>
 
+<script src="../JavaScript/afspraakPlannerFormFiller.js"></script>
 <script src="../JavaScript/afspraakPlanner.js"></script>
-<script type="text/javascript">
-    document.querySelector("#afspraakSubmit").addEventListener("click", function () {
-        let formData = new FormData(document.querySelector("afspraakInplanForm"));
-        let encData = new URLSearchParams(formData.entries());
-
-        fetch("restservices/afspraakmaken", {method: 'POST', body: encData})
-            .then(response => response.json())
-            .then(function (myJson) {
-                console.log(myJson);
-            })
-    })
-</script>
 </body>
 </html>
 

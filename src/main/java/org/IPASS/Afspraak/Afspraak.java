@@ -1,5 +1,6 @@
 package org.IPASS.Afspraak;
 
+import org.IPASS.Data.Manager;
 import org.IPASS.Gebruikers.Klant;
 import org.IPASS.Utils.Utils;
 
@@ -8,30 +9,48 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 
 public class Afspraak implements Serializable {
-
+    private String voornaam;
+    private String achternaam;
     private LocalDateTime datumTijd;
+    private String email;
+    private String afspraakVoor;
+    private String afspraakType;
+    private UUID uuid;
+
     private int duratie;
     private Klant klant;
     private String status;
     private static List<Afspraak> alleAfspraken = new ArrayList<>();
 
-    public Afspraak(LocalDateTime datumTijd, int duratie, Klant klant) {
+    public Afspraak(String voornaam, String achternaam, LocalDateTime datumTijd, String email, String afspraakVoor, String afspraakType) {
+        this.voornaam = voornaam;
+        this.achternaam = achternaam;
         this.datumTijd = datumTijd;
-        this.klant = klant;
-        this.duratie = duratie;
-        this.status = "Onbeoordeeld";
-        alleAfspraken.add(this);
+        this.email = email;
+        this.afspraakVoor = afspraakVoor;
+        this.afspraakType = afspraakType;
+        this.uuid = UUID.randomUUID();
     }
 
-    public static Afspraak maakAfspraakAan(LocalDateTime datumTijd, int duratie, Klant klant) {
-        if (alleAfspraken.stream().noneMatch(e->e.getDatumTijd().equals(datumTijd))) {
-            return new Afspraak(datumTijd, duratie, klant);
-        } else {
-            return null;
-        }
-    }
+//    public Afspraak(LocalDateTime datumTijd, int duratie, Klant klant) {
+//        this.datumTijd = datumTijd;
+//        this.klant = klant;
+//        this.duratie = duratie;
+//        this.status = "Onbeoordeeld";
+//        alleAfspraken.add(this);
+//        Manager.krijgAlleNieuweAangevraagdeAfspraken().add(this);
+//    }
+
+//    public static Afspraak maakAfspraakAan(LocalDateTime datumTijd, int duratie, Klant klant) {
+//        if (alleAfspraken.stream().noneMatch(e->e.getDatumTijd().equals(datumTijd))) {
+//            return new Afspraak(datumTijd, duratie, klant);
+//        } else {
+//            return null;
+//        }
+//    }
 
     public static Afspraak getAfspraakByTijd(LocalDateTime datumEnTijd) {
         return alleAfspraken.stream().filter(e->e.getDatumTijd()==datumEnTijd).findFirst().orElse(null);
@@ -83,6 +102,60 @@ public class Afspraak implements Serializable {
 
     public void setDatumTijd(LocalDateTime datumTijd) {
         this.datumTijd = datumTijd;
+    }
+
+    public String getVoornaam() {
+        return voornaam;
+    }
+
+    public void setVoornaam(String voornaam) {
+        this.voornaam = voornaam;
+    }
+
+    public String getAchternaam() {
+        return achternaam;
+    }
+
+    public void setAchternaam(String achternaam) {
+        this.achternaam = achternaam;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getAfspraakVoor() {
+        return afspraakVoor;
+    }
+
+    public void setAfspraakVoor(String afspraakVoor) {
+        this.afspraakVoor = afspraakVoor;
+    }
+
+    public String getAfspraakType() {
+        return afspraakType;
+    }
+
+    public void setAfspraakType(String afspraakType) {
+        this.afspraakType = afspraakType;
+    }
+
+    public UUID getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(UUID uuid) {
+        this.uuid = uuid;
+    }
+
+    public static Afspraak getAfspraakOpUuid(UUID uuid) {
+        return Manager.krijgAlleNieuweAangevraagdeAfspraken().stream()
+                .filter(Afspraak -> Afspraak.getUuid().equals(uuid))
+                .findFirst().orElse(null);
     }
 
     @Override

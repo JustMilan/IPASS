@@ -167,3 +167,25 @@ h2 {
 h1, h2, h3, h4, p, a, div{
     font-family: "Roboto", serif;
 }
+
+.afsprakenTabel {
+    width: 80%;
+    background-color: #FFFFFF;
+    border-collapse: collapse;
+    border-width: 2px;
+    border-color: #7EA8F8;
+    border-style: outset;
+    color: #000000;
+}
+
+.afsprakenTabel td, .afsprakenTabel th {
+    border-width: 2px;
+    border-color: #7EA8F8;
+    border-style: outset;
+    padding: 5px;
+}
+
+.afsprakenTabel thead {
+    background-color: #7EA8F8;
+}
+

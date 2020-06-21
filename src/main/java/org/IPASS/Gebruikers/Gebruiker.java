@@ -18,14 +18,9 @@ public abstract class Gebruiker implements Principal {
         this.email = email;
         this.wachtwoord = wachtwoord;
         rol = "gebruiker";
-        System.out.println("in constructor" + this);
     }
 
     public static Gebruiker krijgGebruikerBijMail(String mail) {
-        System.out.println("krijg gebruiker bij mail" + alleGebruikers.stream()
-                .filter(e -> e.email.equals(mail))
-                .findFirst());
-
         return alleGebruikers.stream()
                 .filter(e -> e.email.equals(mail))
                 .findFirst()
@@ -49,7 +44,6 @@ public abstract class Gebruiker implements Principal {
     }
 
     public String krijgRol() {
-        System.out.println("in krijgrol in Gebruiker" + rol);
         return rol;
     }
 
