@@ -6,10 +6,15 @@ import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
 public class VerstuurMail {
+    private static String to;
+    private static String subject;
+    private static String mailbody;
+
+
     public static void main(String[] args) {
 
         // Recipient's email ID needs to be mentioned.
-        String to = "milandol321@gmail.com";
+        to = "milandol321@gmail.com";
 
         // Sender's email ID needs to be mentioned
         String from = "milandol321@gmail.com";
@@ -48,10 +53,10 @@ public class VerstuurMail {
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 
             // Set Subject: header field
-            message.setSubject("This is the Subject Line!");
+            message.setSubject(subject);
 
             // Now set the actual message
-            message.setText("This is actual message");
+            message.setText(mailbody);
 
             System.out.println("sending...");
             // Send message
@@ -60,5 +65,17 @@ public class VerstuurMail {
         } catch (MessagingException mex) {
             mex.printStackTrace();
         }
+    }
+
+    public static void setTo(String to) {
+        VerstuurMail.to = to;
+    }
+
+    public static void setSubject(String subject) {
+        VerstuurMail.subject = subject;
+    }
+
+    public static void setMailbody(String mailbody) {
+        VerstuurMail.mailbody = mailbody;
     }
 }

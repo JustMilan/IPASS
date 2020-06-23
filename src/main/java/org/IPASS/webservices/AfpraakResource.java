@@ -2,6 +2,7 @@ package org.IPASS.webservices;
 
 import org.IPASS.Afspraak.Afspraak;
 import org.IPASS.Data.Manager;
+import org.IPASS.Mail.VerstuurMail;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -35,6 +36,12 @@ public class AfpraakResource {
 
         if (!Manager.krijgAlleNieuweAangevraagdeAfspraken().contains(nieuweAfspraak)) {
             Manager.krijgAlleNieuweAangevraagdeAfspraken().add(nieuweAfspraak);
+            VerstuurMail.setTo(email);
+            VerstuurMail.setSubject("afspraak aanvraag ingediend");
+            VerstuurMail.setMailbody("Beste " + voornaam + ", \n\n Uw afspraak aanvraag in binnen gekomen.\n" +
+                    "We zullen u zo spoedig mogelijk hierover updaten. \n\n Met vriendelijke groet," +
+                    "\n\n Milan Dol \n\n Kikakappers schoolproject");
+            VerstuurMail.main(null);
             return Response.ok(nieuweAfspraak).build();
         }
         return Response.status(Response.Status.CONFLICT).build();
@@ -69,6 +76,13 @@ public class AfpraakResource {
 
         if (!Manager.krijgAlleNieuweAangevraagdeAfspraken().contains(afspraak)
                 && Manager.krijgAlleGeaccepteerdeAfspraken().contains(afspraak)) {
+            VerstuurMail.setTo(afspraak.getEmail());
+            VerstuurMail.setSubject("afspraak aanvraag geaccepteerd");
+            VerstuurMail.setMailbody("Beste " + afspraak.getVoornaam()+ ", \n\n" +
+                    "de afspraak aanvraag voor: " + afspraak.getDatumTijd().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")) + " is geaccepteerd." +
+                    "Graag zien we u dan!" + "\n\nMet vriendelijke groet," +
+                    "\n\n Milan Dol \n\n Kikakappers schoolproject");
+            VerstuurMail.main(null);
             return Response.status(Response.Status.OK).build();
         }
         return Response.status(Response.Status.CONFLICT).build();
@@ -89,6 +103,12 @@ public class AfpraakResource {
 
         if (!Manager.krijgAlleNieuweAangevraagdeAfspraken().contains(afspraak)
                 && Manager.getAlleGeweigerdeAfspraken().contains(afspraak)) {
+            VerstuurMail.setTo(afspraak.getEmail());
+            VerstuurMail.setSubject("afspraak aanvraag geweigerd");
+            VerstuurMail.setMailbody("Beste " + afspraak.getVoornaam()+ ", \n\n Helaas moeten wij u mededelen dat" +
+                    "de afspraak aanvraag voor:" + afspraak.getDatumTijd() + "niet in ons schema past en hiervoor " +
+                    "is afgewezen. \n\n Met vriendelijke groet, \n\n Milan Dol \n\n Kikakappers schoolproject");
+            VerstuurMail.main(null);
             return Response.status(Response.Status.OK).build();
         }
         return Response.status(Response.Status.CONFLICT).build();
