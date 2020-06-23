@@ -14,7 +14,6 @@ public class VerstuurMail {
     public static void main(String[] args) {
 
         // Recipient's email ID needs to be mentioned.
-        to = "milandol321@gmail.com";
 
         // Sender's email ID needs to be mentioned
         String from = "milandol321@gmail.com";
