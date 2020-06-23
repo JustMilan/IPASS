@@ -203,7 +203,6 @@ function voegElementenToe() {
     }
 }
 
-
 function resetAlleOpties() {
     document.getElementById('afspraakType').length = 0;
 }

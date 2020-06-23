@@ -103,6 +103,7 @@ function weiger(buttonId) {
             if (response.ok) {
                 window.alert("afspraak geweigerd");
                 window.location.reload(true);
+                return response;
             } else throw "Updaten is fout gegaan";
         })
         .catch(error => alert(error));

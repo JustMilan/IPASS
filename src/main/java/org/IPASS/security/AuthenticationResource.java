@@ -11,7 +11,6 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.security.Key;
-import java.util.AbstractMap;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.Calendar;
 
@@ -41,7 +40,7 @@ public class AuthenticationResource {
 
             String token = createToken(email, rol);
 
-            AbstractMap.SimpleEntry<String, String> JWT = new AbstractMap.SimpleEntry<>("JWT", token);
+            SimpleEntry<String, String> JWT = new SimpleEntry<>("JWT", token);
             return Response.ok(JWT).build();
 
         } catch (JwtException | IllegalArgumentException e) {
