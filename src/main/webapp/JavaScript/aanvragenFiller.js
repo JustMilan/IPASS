@@ -90,6 +90,7 @@ function accepteer(buttonId) {
             if (response.ok) {
                 window.alert("afspraak geaccepteerd");
                 window.location.reload(true);
+                return response;
             } else throw "Updaten is fout gegaan";
         })
         .catch(error => alert(error));
