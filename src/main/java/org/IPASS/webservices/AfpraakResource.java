@@ -78,7 +78,7 @@ public class AfpraakResource {
                 && Manager.krijgAlleGeaccepteerdeAfspraken().contains(afspraak)) {
             VerstuurMail.setTo(afspraak.getEmail());
             VerstuurMail.setSubject("afspraak aanvraag geaccepteerd");
-            VerstuurMail.setMailbody("Beste " + afspraak.getVoornaam()+ ", \n\n" +
+            VerstuurMail.setMailbody("Beste " + afspraak.getVoornaam() + ", \n\n" +
                     "de afspraak aanvraag voor: " + afspraak.getDatumTijd().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")) + " is geaccepteerd." +
                     "Graag zien we u dan!" + "\n\nMet vriendelijke groet," +
                     "\n\n Milan Dol \n\n Kikakappers schoolproject");
@@ -88,10 +88,10 @@ public class AfpraakResource {
         return Response.status(Response.Status.CONFLICT).build();
     }
 
-    @Path("/weigeren")
+    @Path("/weigeren/{id}")
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
-    public Response weigerAfspraak(UUID uuid) {
+    public Response weigerAfspraak(@PathParam("id") UUID uuid) {
         Afspraak afspraak = Afspraak.getAfspraakOpUuid(uuid);
 
         if (Manager.krijgAlleNieuweAangevraagdeAfspraken().contains(afspraak)) {
@@ -105,7 +105,7 @@ public class AfpraakResource {
                 && Manager.getAlleGeweigerdeAfspraken().contains(afspraak)) {
             VerstuurMail.setTo(afspraak.getEmail());
             VerstuurMail.setSubject("afspraak aanvraag geweigerd");
-            VerstuurMail.setMailbody("Beste " + afspraak.getVoornaam()+ ", \n\n Helaas moeten wij u mededelen dat" +
+            VerstuurMail.setMailbody("Beste " + afspraak.getVoornaam() + ", \n\n Helaas moeten wij u mededelen dat" +
                     "de afspraak aanvraag voor:" + afspraak.getDatumTijd() + "niet in ons schema past en hiervoor " +
                     "is afgewezen. \n\n Met vriendelijke groet, \n\n Milan Dol \n\n Kikakappers schoolproject");
             VerstuurMail.main(null);
