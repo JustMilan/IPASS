@@ -3,14 +3,16 @@ body {
     margin: 0;
     background-color: floralwhite;
     font-size: 25px;
-    overflow-x: hidden;
+    /*overflow-x: hidden;*/
+    width: 100%;
 }
 
 .slider-frame {
     overflow: hidden;
     height: 800px;
     width: 1200px;
-    margin-left: 360px;
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 20px;
 }
 
@@ -209,13 +211,14 @@ label {
 
 .prijslijstTabel td {
     border: 1px solid #ddd;
-    padding: 8px;
+    padding: 5px;
+    font-size: 20px;
 }
 
 .containerPrijs {
     display: flex;
     width: 100%;
-    justify-content: center;
+    margin-right: auto;
 }
 
 #telefoonNav {
