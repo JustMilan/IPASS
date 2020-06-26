@@ -75,6 +75,7 @@ body {
 /*https://youtu.be/j18CH0Grhbw*/
 
 ul {
+    display: flex;
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -139,16 +140,11 @@ h2 {
     font-weight: bold;
 }
 
-#telefoonNav {
-    margin-right: 0;
-    margin-left: 920px;
-    text-align: right;
-}
-
 .container {
     display: flex;
+    flex-direction: column;
     width: 100%;
-    justify-content: center;
+    align-items: center;
 }
 
 .innerContainer {
@@ -189,3 +185,43 @@ h1, h2, h3, h4, p, a, div{
     background-color: #7EA8F8;
 }
 
+input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #CCC;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical;
+}
+
+label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+}
+
+.prijslijstTabel td {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: hotpink;
+    color: white;
+}
+
+.prijslijstTabel td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.containerPrijs {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+#telefoonNav {
+    margin-left: auto;
+}
+
+#inloggenNav {
+    margin-left: auto;
+}

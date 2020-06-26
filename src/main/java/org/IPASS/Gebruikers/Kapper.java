@@ -9,10 +9,12 @@ import java.util.List;
 
 public class Kapper extends Gebruiker {
     private String wachtwoord;
+    private String rol;
     private List<Afspraak> alleGeaccepteerdeAfspraken = new ArrayList<>();
 
     public Kapper(String voornaam, String achternaam, String email, String wachtwoord) {
         super(voornaam, achternaam, email, wachtwoord);
+        this.rol = "kapper";
         if (!Manager.krijgAlleKappers().contains(this)) {
             Gebruiker.alleGebruikers.add(this);
             Manager.krijgAlleKappers().add(this);
@@ -73,5 +75,13 @@ public class Kapper extends Gebruiker {
     public void voegAfspraakToe(Afspraak afspraak) {
         alleGeaccepteerdeAfspraken.add(afspraak);
         Manager.krijgAlleGeaccepteerdeAfspraken().add(afspraak);
+    }
+
+    public String krijgRol() {
+        return rol;
+    }
+
+    public void zetRol(String rol) {
+        this.rol = rol;
     }
 }

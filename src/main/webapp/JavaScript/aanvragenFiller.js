@@ -1,4 +1,7 @@
 function krijgAlleAanvragen(event) {
+
+    loginCheck();
+
     fetch("/restservices/afspraakaanvragen", {method: 'GET'})
         .then(function (response) {
             if (response.ok) {
@@ -107,4 +110,13 @@ function weiger(buttonId) {
             } else throw "Updaten is fout gegaan";
         })
         .catch(error => alert(error));
+}
+
+function loginCheck() {
+    fetch("/restservices/loggedin", {method: 'GET'})
+        .then(function (response) {
+            if (response.ok) {
+                return response.json();
+            } else window.location.href = "/index.html";
+        })
 }

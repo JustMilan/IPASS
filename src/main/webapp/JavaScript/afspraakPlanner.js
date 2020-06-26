@@ -7,7 +7,6 @@ function submitAanvraag(event) {
     fetch("/restservices/afspraakaanvragen", {method: 'POST', body: encData})
         .then(function (response) {
             if (response.ok) {
-                console.log(response);
                 return response.json();
             } else throw "Aanvraag is verkeerd gegaan";
         })

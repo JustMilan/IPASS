@@ -4,6 +4,7 @@ import org.IPASS.Afspraak.Afspraak;
 import org.IPASS.Data.Manager;
 import org.IPASS.Mail.VerstuurMail;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -49,7 +50,7 @@ public class AfpraakResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-//    @RolesAllowed("kapper") nog implementeren
+    @RolesAllowed("kapper")
     public Response vraagNieuweAanvragenOp() {
         return Response.ok(Manager.krijgAlleNieuweAangevraagdeAfspraken()).build();
     }
@@ -63,6 +64,7 @@ public class AfpraakResource {
 
     @Path("/accepteren/{id}")
     @PUT
+    @RolesAllowed("kapper")
     @Produces(MediaType.APPLICATION_JSON)
     public Response accepteerAfspraak(@PathParam("id") UUID uuid) {
         Afspraak afspraak = Afspraak.getAfspraakOpUuid(uuid);
@@ -90,6 +92,7 @@ public class AfpraakResource {
 
     @Path("/weigeren/{id}")
     @PUT
+    @RolesAllowed("kapper")
     @Produces(MediaType.APPLICATION_JSON)
     public Response weigerAfspraak(@PathParam("id") UUID uuid) {
         Afspraak afspraak = Afspraak.getAfspraakOpUuid(uuid);
@@ -116,6 +119,7 @@ public class AfpraakResource {
 
     @Path("/geaccepteerd")
     @GET
+    @RolesAllowed("kapper")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAlleGeaccepteerdeAfspraken() {
         return Response.ok(Manager.krijgAlleGeaccepteerdeAfspraken()).build();

@@ -1,4 +1,7 @@
 function krijgAlleGeaccepteerdeAanvragen(event) {
+
+    loginCheck();
+
     fetch("/restservices/afspraakaanvragen/geaccepteerd", {method: 'GET'})
         .then(function (response) {
             if (response.ok) {
@@ -62,4 +65,13 @@ function filterRelevanteInfo(jsonData) {
         afspraakTypeCel.innerHTML = afsprakenArray[i][5];
         afspraakTypeCel.id = "afspraakTypeCel" + i;
     }
+}
+
+function loginCheck() {
+    fetch("/restservices/loggedin", {method: 'GET'})
+        .then(function (response) {
+            if (response.ok) {
+                return response.json();
+            } else window.location.href ="/index.html";
+        })
 }
