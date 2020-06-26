@@ -2,7 +2,7 @@ function krijgAlleAanvragen(event) {
 
     loginCheck();
 
-    fetch("/restservices/afspraakaanvragen", {method: 'GET'})
+    fetch("/restservices/afspraakaanvragen", {method: 'GET', headers: {'Authorization': 'Bearer ' + window.sessionStorage.getItem('myJWT')}})
         .then(function (response) {
             if (response.ok) {
                 return response.json();
@@ -88,7 +88,7 @@ function filterRelevanteInfo(jsonData) {
 }
 
 function accepteer(buttonId) {
-    fetch("/restservices/afspraakaanvragen/accepteren/" + buttonId, {method: 'PUT'})
+    fetch("/restservices/afspraakaanvragen/accepteren/" + buttonId, {method: 'PUT', headers: {'Authorization': 'Bearer ' + window.sessionStorage.getItem('myJWT')}})
         .then(function (response) {
             if (response.ok) {
                 window.alert("afspraak geaccepteerd");
@@ -101,7 +101,7 @@ function accepteer(buttonId) {
 
 
 function weiger(buttonId) {
-    fetch("/restservices/afspraakaanvragen/weigeren/" + buttonId, {method: 'PUT'})
+    fetch("/restservices/afspraakaanvragen/weigeren/" + buttonId, {method: 'PUT', headers: {'Authorization': 'Bearer ' + window.sessionStorage.getItem('myJWT')}})
         .then(function (response) {
             if (response.ok) {
                 window.alert("afspraak geweigerd");
@@ -113,10 +113,11 @@ function weiger(buttonId) {
 }
 
 function loginCheck() {
-    fetch("/restservices/loggedin", {method: 'GET'})
+    fetch("/restservices/loggedin",{method: 'GET', headers: {'Authorization': 'Bearer ' + window.sessionStorage.getItem('myJWT')}})
         .then(function (response) {
-            if (response.ok) {
-                return response.json();
-            } else window.location.href = "/index.html";
+            if (!response.ok) {
+                alert("niet ingelogd");
+                window.location.href = "/index.html";
+            }
         })
 }

@@ -2,7 +2,7 @@ function krijgAlleGeaccepteerdeAanvragen(event) {
 
     loginCheck();
 
-    fetch("/restservices/afspraakaanvragen/geaccepteerd", {method: 'GET'})
+    fetch("/restservices/afspraakaanvragen/geaccepteerd", {method: 'GET', headers: {'Authorization': 'Bearer ' + window.sessionStorage.getItem('myJWT')}})
         .then(function (response) {
             if (response.ok) {
                 return response.json();
@@ -68,10 +68,12 @@ function filterRelevanteInfo(jsonData) {
 }
 
 function loginCheck() {
-    fetch("/restservices/loggedin", {method: 'GET'})
+    fetch("/restservices/loggedin",
+        {method: 'GET', headers: {'Authorization': 'Bearer ' + window.sessionStorage.getItem('myJWT')}})
         .then(function (response) {
-            if (response.ok) {
-                return response.json();
-            } else window.location.href ="/index.html";
+            if (!response.ok) {
+                alert("niet ingelogd");
+                window.location.href = "/index.html";
+            }
         })
 }

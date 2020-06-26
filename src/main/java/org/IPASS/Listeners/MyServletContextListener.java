@@ -21,7 +21,8 @@ public class MyServletContextListener implements ServletContextListener {
         Afspraak mock = new Afspraak("VoornaamTest", "AchternaamTest", LocalDateTime.of(2020, 10, 10, 13, 20), "testemail@gmail.com", "Heren", "Tondeuse");
         Manager.krijgAlleNieuweAangevraagdeAfspraken().add(mock);
         // if rol is null dan normale kapper if .zetadmin dan admin
-        new Kapper("Milan", "Dol", "milandol321@gmail.com", "1234");
+        Kapper milan = new Kapper("Milan", "Dol", "milandol321@gmail.com", "1234");
+        milan.zetRol("kapper");
 
     }
 

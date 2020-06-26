@@ -1,5 +1,6 @@
 package org.IPASS.Gebruikers;
 
+import javax.security.auth.Subject;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +18,6 @@ public abstract class Gebruiker implements Principal {
         this.achternaam = achternaam;
         this.email = email;
         this.wachtwoord = wachtwoord;
-        rol = "gebruiker";
     }
 
     public static Gebruiker krijgGebruikerBijMail(String mail) {
@@ -47,7 +47,13 @@ public abstract class Gebruiker implements Principal {
         return rol;
     }
 
-//    public void VerwijderGebruiker(String mail) {
-//        alleGebruikers.remove(mail);
-//    }
+    @Override
+    public String getName() {
+        return voornaam;
+    }
+
+    @Override
+    public boolean implies(Subject subject) {
+        return false;
+    }
 }

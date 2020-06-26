@@ -9,6 +9,7 @@ public class VolatileData {
     Kapper k3 = new Kapper("Snelle", "Jongen", "snelle@kikakappers.nl", "wachtwoord");
     Kapper k4 = new Kapper("Punker", "Rock", "punker@kikakappers.nl", "wachtwoord");
     Kapper k5 = new Kapper("Lara", "Bootman", "lara@kikakappers.nl", "wachtwoord");
+    Kapper k6 = new Kapper("Milan", "Dol", "milandol321@gmail.com", "wachtwoord");
 
 //    Klant kl1 = new Klant("Cory", "Chase", "CoryChase@gmail.com");
 //    Klant kl2 = new Klant("James", "Deen", "J.D.E.E.N.S@gmail.com");

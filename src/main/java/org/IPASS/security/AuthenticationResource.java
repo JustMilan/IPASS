@@ -7,6 +7,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.impl.crypto.MacProvider;
 import org.IPASS.Gebruikers.Gebruiker;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -37,7 +38,7 @@ public class AuthenticationResource {
                                                @FormParam("wachtwoord") String wachtwoord) {
         try {
             String rol = Gebruiker.validateLogin(email, wachtwoord);
-
+            System.out.println(rol);
             String token = createToken(email, rol);
 
             SimpleEntry<String, String> JWT = new SimpleEntry<>("JWT", token);
@@ -47,6 +48,13 @@ public class AuthenticationResource {
             e.printStackTrace();
             return Response.status(Response.Status.UNAUTHORIZED).build();
         }
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @RolesAllowed("kapper")
+    public javax.ws.rs.core.Response loginCheck() {
+        return Response.status(Response.Status.OK).build();
     }
 }
 

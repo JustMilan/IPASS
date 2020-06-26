@@ -21,15 +21,6 @@ public class Kapper extends Gebruiker {
         }
     }
 
-    @Override
-    public String getName() {
-        return voornaam;
-    }
-
-    @Override
-    public boolean implies(Subject subject) {
-        return false;
-    }
 
     public String krijgWachtwoord() {
         return wachtwoord;

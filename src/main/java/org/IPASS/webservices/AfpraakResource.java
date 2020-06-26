@@ -57,7 +57,7 @@ public class AfpraakResource {
 
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
-//    @RolesAllowed("kapper")
+    @RolesAllowed("kapper")
     public Response updateAfspraak() {
         return Response.ok().build();
     }

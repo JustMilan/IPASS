@@ -12,7 +12,7 @@ public class LoginCheck {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @RolesAllowed("kapper")
-    public javax.ws.rs.core.Response loginCheck(){
+    public Response loginCheck() {
         return Response.status(Response.Status.OK).build();
     }
 }
