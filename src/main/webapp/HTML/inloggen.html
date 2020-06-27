@@ -1,22 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="inlogBodyHtml">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../CSS/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/inlogCSS.css">
     <link rel="shortcut icon" type="image/x-icon" href="../Files/favicon.ico">
-    <title>Inloggen - Kika kappers</title>
+    <title>Inloggen</title>
 </head>
 <body>
-<div class="inloggencontainer">
-    <div class="inlogContainer">
-        <form class="inlogContainer" id="inloggenForm">
-<!--            <label for="email">Email</label>-->
-            <input type="email" id="email" placeholder="email" name="email" required/>
-
-<!--            <label for="wachtwoord">Wachtwoord</label>-->
-            <input type="password" id="wachtwoord" placeholder="wachtwoord" autocomplete="true" name="wachtwoord"
-                   required>
-            <input type="button" value="inloggen" id="loginButton"/>
+<div class="background">
+    <img src="../Files/Image1.jpg" class="background__image">
+</div>
+<div class="container">
+    <div class="container__inner">
+        <form class="form" id="inloggenForm">
+            <h1 class="form__title">Inloggen</h1>
+            <div class="form__wrapper">
+                <input class="form__input" type="text" placeholder="E-mail" id="email" name="email" autocomplete="true" required>
+            </div>
+            <div class="form__wrapper">
+                <input class="form__input" type="password" placeholder="Wachtwoord" id="wachtwoord" name="wachtwoord" autocomplete="true" required>
+            </div>
+            <button type="button" class="form__button" id="loginButton">Versturen</button>
         </form>
     </div>
 </div>
