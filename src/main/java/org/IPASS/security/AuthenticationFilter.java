@@ -21,7 +21,9 @@ public class AuthenticationFilter implements ContainerRequestFilter {
     public void filter(ContainerRequestContext requestContext) throws IOException {
         boolean isVeilig = requestContext.getSecurityContext().isSecure();
         String scheme = requestContext.getUriInfo().getRequestUri().getScheme();
-        // Users are treated as guests, unless a valid JWT is provided
+
+        // Gebruikers worden als gasten behandeld tenzij er een JWT token is
+
         MySecurityContext msc = new MySecurityContext(null, scheme);
         String authHeader = requestContext.getHeaderString(HttpHeaders.AUTHORIZATION);
         if (authHeader != null && authHeader.startsWith("Bearer ")) {

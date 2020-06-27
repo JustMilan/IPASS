@@ -162,7 +162,7 @@ h2 {
     display: flex;
 }
 
-h1, h2, h3, h4, p, a, div{
+h1, h2, h3, h4, p, a, div {
     font-family: "Roboto", serif;
 }
 
@@ -227,4 +227,55 @@ label {
 
 #inloggenNav {
     margin-left: auto;
+}
+
+
+.loginForeground {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (max-width: 1370px) {
+    .inlogContainer {
+        display: flex;
+        align-items: center;
+        height: 625px;
+        width: 1366px;
+        margin-left: 240px;
+}
+
+    .inloggencontainer {
+        position: absolute;
+        background-image: url("../Files/Image1.jpg");
+    }
+}
+
+@media (min-width: 1400px) {
+    .inlogContainer {
+        display: flex;
+        align-items: center;
+        height: 937px;
+        width: 1920px;
+        justify-content: center;
+
+    }
+
+    .inloggencontainer {
+        position: absolute;
+        background-image: url("../Files/Image1.jpg");
+        height: 937px;
+        width: 1920px;
+    }
+}
+
+.inlogContainer input[type=text] {
+    background-color: whitesmoke;
+}
+
+.inlogContainer input[type=button] {
+    background-color: hotpink;
+}
+
+.inlogContainer input[type=button]:hover {
+    opacity: 0.8;
 }

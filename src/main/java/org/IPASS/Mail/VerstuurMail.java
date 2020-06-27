@@ -13,24 +13,24 @@ public class VerstuurMail {
 
     public static void main(String[] args) {
 
-        // Recipient's email ID needs to be mentioned.
+        // Ontvanger ID is genoemd in de atributen.
 
-        // Sender's email ID needs to be mentioned
+        // Verstuurders ID
         String from = "milandol321@gmail.com";
 
-        // Assuming you are sending email from through gmails smtp
+        // SMTP server in dit geval SendGrid
         String host = "smtp.sendgrid.net";
 
-        // Get system properties
+        // Systeem properties worden hier opgevraagd
         Properties properties = System.getProperties();
 
-        // Setup mail server
+        // zet mail server op
         properties.put("mail.smtp.host", host);
         properties.put("mail.smtp.port", "465");
         properties.put("mail.smtp.ssl.enable", "true");
         properties.put("mail.smtp.auth", "true");
 
-        // Get the Session object.// and pass username and password
+        // Krijg het Session object. En geef de username en het wachtwoord.
         Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
 
             protected PasswordAuthentication getPasswordAuthentication() {
@@ -38,27 +38,28 @@ public class VerstuurMail {
             }
         });
 
-        // Used to debug SMTP issues
-        session.setDebug(true);
+        // Krijg SMTP debugger voor als iets fout gaat
+//        session.setDebug(true);
 
         try {
-            // Create a default MimeMessage object.
+            // Creër default Mime object.
             MimeMessage message = new MimeMessage(session);
 
-            // Set From: header field of the header.
+            // Zet From: header field van de header.
             message.setFrom(new InternetAddress(from));
 
-            // Set To: header field of the header.
+            // Zet To: header field van de header.
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 
-            // Set Subject: header field
+            // Zet Onderwerp: header field
             message.setSubject(subject);
 
-            // Now set the actual message
+            // Hier wordt de mail body gezet.
             message.setText(mailbody);
 
             System.out.println("sending...");
-            // Send message
+            // Verzend mail.
+            // Verzend mail.
             Transport.send(message);
             System.out.println("Sent message successfully....");
         } catch (MessagingException mex) {

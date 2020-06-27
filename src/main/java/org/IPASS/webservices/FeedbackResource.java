@@ -1,17 +1,10 @@
 package org.IPASS.webservices;
 
-import com.azure.core.annotation.Post;
-import org.IPASS.Afspraak.Afspraak;
-import org.IPASS.Data.Manager;
-import org.IPASS.Mail.Feedback;
-import org.IPASS.Mail.Mail;
 import org.IPASS.Mail.VerstuurMail;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 @Path("/feedback")
 public class FeedbackResource {

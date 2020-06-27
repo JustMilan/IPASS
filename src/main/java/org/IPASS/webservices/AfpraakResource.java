@@ -25,24 +25,23 @@ public class AfpraakResource {
                                          @FormParam("afspraakVoor") String afspraakVoor,
                                          @FormParam("afspraakType") String afspraakType) {
 
-//       datumtijd komt zo binnen yyyy-MM-ddTHH:mm
-
 //        String readable maken voor de formatter
         String zonderT = datumTijd.replace('T', ' ');
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
 //        Zo parse je hem van datetimeformatter naar localdatetime, nodig voor de constructor
         LocalDateTime dateTime = LocalDateTime.parse(zonderT, formatter);
 
         Afspraak nieuweAfspraak = new Afspraak(voornaam, achternaam, dateTime, email, afspraakVoor, afspraakType);
 
-        if (!Manager.krijgAlleNieuweAangevraagdeAfspraken().contains(nieuweAfspraak)) {
-            Manager.krijgAlleNieuweAangevraagdeAfspraken().add(nieuweAfspraak);
-            VerstuurMail.setTo(email);
-            VerstuurMail.setSubject("afspraak aanvraag ingediend");
-            VerstuurMail.setMailbody("Beste " + voornaam + ", \n\n Uw afspraak aanvraag in binnen gekomen.\n" +
-                    "We zullen u zo spoedig mogelijk hierover updaten. \n\n Met vriendelijke groet," +
-                    "\n\n Milan Dol \n\n Kikakappers schoolproject");
-            VerstuurMail.main(null);
+        if (Manager.krijgAlleNieuweAangevraagdeAfspraken().contains(nieuweAfspraak)) {
+//            VerstuurMail.setTo(email);
+//            VerstuurMail.setSubject("afspraak aanvraag ingediend");
+//            VerstuurMail.setMailbody("Beste " + voornaam + ", \n\n Uw afspraak aanvraag voor: " + dateTime +
+//                    " in binnen gekomen.\n" +
+//                    "We zullen u zo spoedig mogelijk hierover updaten. \n\n Met vriendelijke groet," +
+//                    "\n\n Milan Dol \n\n Kikakappers schoolproject");
+//            VerstuurMail.main(null);
             return Response.ok(nieuweAfspraak).build();
         }
         return Response.status(Response.Status.CONFLICT).build();
@@ -81,7 +80,8 @@ public class AfpraakResource {
             VerstuurMail.setTo(afspraak.getEmail());
             VerstuurMail.setSubject("afspraak aanvraag geaccepteerd");
             VerstuurMail.setMailbody("Beste " + afspraak.getVoornaam() + ", \n\n" +
-                    "de afspraak aanvraag voor: " + afspraak.getDatumTijd().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")) + " is geaccepteerd." +
+                    "de afspraak aanvraag voor: " + afspraak.getDatumTijd().format(DateTimeFormatter
+                    .ofPattern("dd/MM/yyyy HH:mm")) + " is geaccepteerd." +
                     "Graag zien we u dan!" + "\n\nMet vriendelijke groet," +
                     "\n\n Milan Dol \n\n Kikakappers schoolproject");
             VerstuurMail.main(null);
@@ -97,6 +97,7 @@ public class AfpraakResource {
     public Response weigerAfspraak(@PathParam("id") UUID uuid) {
         Afspraak afspraak = Afspraak.getAfspraakOpUuid(uuid);
 
+        System.out.println(Manager.krijgAlleNieuweAangevraagdeAfspraken().contains(afspraak));
         if (Manager.krijgAlleNieuweAangevraagdeAfspraken().contains(afspraak)) {
             Manager.krijgAlleNieuweAangevraagdeAfspraken().remove(afspraak);
             Manager.getAlleGeweigerdeAfspraken().add(afspraak);

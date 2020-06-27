@@ -32,6 +32,7 @@ function filterRelevanteInfo(jsonData) {
         afspraakArray.push(datumtijdformat);
         afspraakArray.push(jsonData[i].email);
         afspraakArray.push(jsonData[i].afspraakVoor);
+        console.log(jsonData[i].afspraakVoor);
         afspraakArray.push(jsonData[i].afspraakType);
         afspraakArray.push(jsonData[i].uuid);
         afsprakenArray.push(afspraakArray);

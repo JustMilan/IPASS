@@ -3,7 +3,6 @@ package org.IPASS.Listeners;
 import org.IPASS.Afspraak.Afspraak;
 import org.IPASS.Data.Manager;
 import org.IPASS.Gebruikers.Kapper;
-import org.IPASS.Gebruikers.Klant;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -18,12 +17,22 @@ public class MyServletContextListener implements ServletContextListener {
         System.out.println("Applicatie is aan het opstarten");
         System.out.println("Initialiseer hier objecten, of laad alvast data");
 
-        Afspraak mock = new Afspraak("VoornaamTest", "AchternaamTest", LocalDateTime.of(2020, 10, 10, 13, 20), "testemail@gmail.com", "Heren", "Tondeuse");
-        Manager.krijgAlleNieuweAangevraagdeAfspraken().add(mock);
-        // if rol is null dan normale kapper if .zetadmin dan admin
-        Kapper milan = new Kapper("Milan", "Dol", "milandol321@gmail.com", "1234");
-        milan.zetRol("kapper");
+        Afspraak mock = new Afspraak("VoornaamTest", "AchternaamTest",
+                LocalDateTime.of(2020, 10, 10, 13, 20),
+                "testemail@gmail.com", "Heren", "Tondeuse");
 
+        Kapper milan = new Kapper("Milan", "Dol", "milandol321@gmail.com", "1234");
+        Kapper k1 = new Kapper("Karen", "Cares", "karen@kikakappers.nl", "1234");
+        Kapper k2 = new Kapper("Marie", "Mul", "marie@kikakappers.nl", "1234");
+        Kapper k3 = new Kapper("Snelle", "Jongen", "snelle@kikakappers.nl", "1234");
+        Kapper k4 = new Kapper("Punker", "Rock", "punker@kikakappers.nl", "1234");
+        Kapper k5 = new Kapper("Lara", "Bootman", "lara@kikakappers.nl", "1234");
+        milan.zetRol("kapper");
+        k1.zetRol("kapper");
+        k2.zetRol("kapper");
+        k3.zetRol("kapper");
+        k4.zetRol("kapper");
+        k5.zetRol("kapper");
     }
 
     @Override

@@ -1,8 +1,6 @@
 package org.IPASS.Afspraak;
 
 import org.IPASS.Data.Manager;
-import org.IPASS.Gebruikers.Klant;
-import org.IPASS.Utils.Utils;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -19,10 +17,6 @@ public class Afspraak implements Serializable {
     private String afspraakVoor;
     private String afspraakType;
     private UUID uuid;
-
-    private int duratie;
-    private Klant klant;
-    private String status;
     private static List<Afspraak> alleAfspraken = new ArrayList<>();
 
     public Afspraak(String voornaam, String achternaam, LocalDateTime datumTijd, String email, String afspraakVoor, String afspraakType) {
@@ -33,75 +27,17 @@ public class Afspraak implements Serializable {
         this.afspraakVoor = afspraakVoor;
         this.afspraakType = afspraakType;
         this.uuid = UUID.randomUUID();
+        if (!Manager.krijgAlleNieuweAangevraagdeAfspraken().contains(this)) {
+            Manager.krijgAlleNieuweAangevraagdeAfspraken().add(this);
+        }
     }
-
-//    public Afspraak(LocalDateTime datumTijd, int duratie, Klant klant) {
-//        this.datumTijd = datumTijd;
-//        this.klant = klant;
-//        this.duratie = duratie;
-//        this.status = "Onbeoordeeld";
-//        alleAfspraken.add(this);
-//        Manager.krijgAlleNieuweAangevraagdeAfspraken().add(this);
-//    }
-
-//    public static Afspraak maakAfspraakAan(LocalDateTime datumTijd, int duratie, Klant klant) {
-//        if (alleAfspraken.stream().noneMatch(e->e.getDatumTijd().equals(datumTijd))) {
-//            return new Afspraak(datumTijd, duratie, klant);
-//        } else {
-//            return null;
-//        }
-//    }
 
     public static Afspraak getAfspraakByTijd(LocalDateTime datumEnTijd) {
-        return alleAfspraken.stream().filter(e->e.getDatumTijd()==datumEnTijd).findFirst().orElse(null);
-    }
-
-    public static List<Afspraak> getAlleAfspraken() {
-        return alleAfspraken;
-    }
-
-    public static void setAlleAfspraken(List<Afspraak> alleAfspraken) {
-        Afspraak.alleAfspraken = alleAfspraken;
-    }
-
-    public int getDuratie() {
-        return duratie;
-    }
-
-    public void setDuratie(int duratie) {
-        this.duratie = duratie;
-    }
-
-    public static boolean checkDatumTijd(LocalDateTime datumTijd) {
-        return Utils.checkDatumTijd(datumTijd);
-    }
-
-    public static String checkStatus(String status) {
-        return status;
-    }
-
-    public Klant getKlant() {
-        return klant;
-    }
-
-    public void setKlant(Klant klant) {
-        this.klant = klant;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
+        return alleAfspraken.stream().filter(e -> e.getDatumTijd() == datumEnTijd).findFirst().orElse(null);
     }
 
     public LocalDateTime getDatumTijd() {
         return datumTijd;
-    }
-
-    public void setDatumTijd(LocalDateTime datumTijd) {
-        this.datumTijd = datumTijd;
     }
 
     public String getVoornaam() {
@@ -132,24 +68,12 @@ public class Afspraak implements Serializable {
         return afspraakVoor;
     }
 
-    public void setAfspraakVoor(String afspraakVoor) {
-        this.afspraakVoor = afspraakVoor;
-    }
-
     public String getAfspraakType() {
         return afspraakType;
     }
 
-    public void setAfspraakType(String afspraakType) {
-        this.afspraakType = afspraakType;
-    }
-
     public UUID getUuid() {
         return uuid;
-    }
-
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
     }
 
     public static Afspraak getAfspraakOpUuid(UUID uuid) {
@@ -163,14 +87,17 @@ public class Afspraak implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Afspraak afspraak = (Afspraak) o;
-        return duratie == afspraak.duratie &&
+        return Objects.equals(voornaam, afspraak.voornaam) &&
+                Objects.equals(achternaam, afspraak.achternaam) &&
                 Objects.equals(datumTijd, afspraak.datumTijd) &&
-                Objects.equals(klant, afspraak.klant) &&
-                Objects.equals(status, afspraak.status);
+                Objects.equals(email, afspraak.email) &&
+                Objects.equals(afspraakVoor, afspraak.afspraakVoor) &&
+                Objects.equals(afspraakType, afspraak.afspraakType) &&
+                Objects.equals(uuid, afspraak.uuid);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(datumTijd, duratie, klant, status);
+        return Objects.hash(voornaam, achternaam, datumTijd, email, afspraakVoor, afspraakType, uuid);
     }
 }

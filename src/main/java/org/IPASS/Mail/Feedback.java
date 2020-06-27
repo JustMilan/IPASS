@@ -1,7 +1,5 @@
 package org.IPASS.Mail;
 
-import org.IPASS.Gebruikers.Klant;
-
 public class Feedback {
   private String voornaam;
   private String achternaam;
@@ -37,13 +35,5 @@ public class Feedback {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getBericht() {
-        return bericht;
-    }
-
-    public void setBericht(String bericht) {
-        this.bericht = bericht;
     }
 }

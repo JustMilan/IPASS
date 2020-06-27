@@ -38,7 +38,6 @@ public class AuthenticationResource {
                                                @FormParam("wachtwoord") String wachtwoord) {
         try {
             String rol = Gebruiker.validateLogin(email, wachtwoord);
-            System.out.println(rol);
             String token = createToken(email, rol);
 
             SimpleEntry<String, String> JWT = new SimpleEntry<>("JWT", token);

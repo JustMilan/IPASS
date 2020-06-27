@@ -35,14 +35,6 @@ public abstract class Gebruiker implements Principal {
         throw new IllegalArgumentException();
     }
 
-    public void zetAdmin() {
-        rol = "admin";
-    }
-
-    public String krijgEmail() {
-        return email;
-    }
-
     public String krijgRol() {
         return rol;
     }
