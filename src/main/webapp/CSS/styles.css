@@ -255,29 +255,3 @@ label {
     filter: blur(10px);
     transform: scale(1.1);
 }
-
-.container {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-    z-index: 2;
-}
-
-.container__inner {
-    display: flex;
-    align-items: center;
-    height: 300px;
-    width: 400px;
-    background-color: rgba(0, 0, 0, 0.85);
-    border-radius: 10px;
-    border-bottom: 3px solid #d62a80;
-    transition: 0.2s;
-}
-
-/* Haal dit weg om de hover animatie weg te halen: */
-.container__inner:hover {
-    transform: scale(1.1);
-}

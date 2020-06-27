@@ -35,13 +35,13 @@ public class AfpraakResource {
         Afspraak nieuweAfspraak = new Afspraak(voornaam, achternaam, dateTime, email, afspraakVoor, afspraakType);
 
         if (Manager.krijgAlleNieuweAangevraagdeAfspraken().contains(nieuweAfspraak)) {
-//            VerstuurMail.setTo(email);
-//            VerstuurMail.setSubject("afspraak aanvraag ingediend");
-//            VerstuurMail.setMailbody("Beste " + voornaam + ", \n\n Uw afspraak aanvraag voor: " + dateTime +
-//                    " in binnen gekomen.\n" +
-//                    "We zullen u zo spoedig mogelijk hierover updaten. \n\n Met vriendelijke groet," +
-//                    "\n\n Milan Dol \n\n Kikakappers schoolproject");
-//            VerstuurMail.main(null);
+            VerstuurMail.setTo(email);
+            VerstuurMail.setSubject("afspraak aanvraag ingediend");
+            VerstuurMail.setMailbody("Beste " + voornaam + ", \n\n Uw afspraak aanvraag voor: " + dateTime +
+                    " in binnen gekomen.\n" +
+                    "We zullen u zo spoedig mogelijk hierover updaten. \n\n Met vriendelijke groet," +
+                    "\n\n Milan Dol \n\n Kikakappers schoolproject");
+            VerstuurMail.main(null);
             return Response.ok(nieuweAfspraak).build();
         }
         return Response.status(Response.Status.CONFLICT).build();
