@@ -8,9 +8,9 @@ function verstuurFeedback(event) {
         .then(function (response) {
             if (response.ok) {
                 window.alert("afspraak aanvraag verzonden");
-                return response.json();
+                window.reload(true);
+                return response;
             } else throw "Feedback versturen is fout gegaan";
         })
-        .then(() => window.alert("afspraak aanvraag verzonden"))
         .catch(error => alert(error));
 }
