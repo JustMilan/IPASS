@@ -1,30 +1,75 @@
-//package org.IPASS.Afspraak;
-//
-//import org.IPASS.Gebruikers.Klant;
-//import org.junit.Assert;
-//import org.junit.Test;
-//
-//import java.time.LocalDateTime;
-//
-//public class AfspraakTest {
-//
-//    @Test
-//    public void AfspraakKanNietVoorVandaag() {
-//        LocalDateTime gister = (LocalDateTime.now().minusDays(1));
-//        Assert.assertFalse(Afspraak.checkDatumTijd(gister));
-//    }
-//
-//    @Test
-//    public void AfspraakKanNietVandaag() {
-//        LocalDateTime vandaag = LocalDateTime.now();
-//        Assert.assertFalse(Afspraak.checkDatumTijd(vandaag));
-//    }
-//
-//    @Test
-//    public void StandaardStatusMoetFalseZijn() {
-//        Afspraak testAfspraak = new Afspraak(LocalDateTime.now().plusDays(1),
-//                new Klant("TestKlant", "testklant@gmail.com"), new Klant("TestKlant", "testklant@gmail.com")) ;
-//        Assert.assertFalse(Afspraak.checkStatus(testAfspraak.getStatus()));
-//    }
-//
-//}
+package org.IPASS.Afspraak;
+
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import java.time.LocalDateTime;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+public class AfspraakTest {
+    Afspraak test;
+
+    @BeforeEach
+    void initialize() {
+        test = new Afspraak("TestVoornaam", "TestAchternaam",
+                LocalDateTime.of(2020, 7, 8, 10, 30),
+                "testemail@email.com", "Heren", "Tondeuse");
+    }
+
+    @Test
+    void validConstructorShouldPass() {
+        assertDoesNotThrow(() -> test);
+    }
+
+    @Test
+    void setVoornaamShouldPass() {
+        assertDoesNotThrow(() -> test.setVoornaam("nieuweVoornaam"));
+    }
+
+    @Test
+    void setAchternaamShouldPass() {
+        assertDoesNotThrow(() -> test.setVoornaam("nieuweAchternaam"));
+    }
+
+    @Test
+    void setEmailShouldPass() {
+        assertDoesNotThrow(() -> test.setEmail("nieuweEmail@email.com"));
+    }
+
+    @Test
+    void getDatumTijdShouldPass() {
+        assertEquals(LocalDateTime.of(2020, 7, 8, 10, 30), test.getDatumTijd());
+    }
+
+    @Test
+    void getVoornaamShouldPass() {
+        assertEquals("TestVoornaam", test.getVoornaam());
+    }
+
+    @Test
+    void getAchternaamShouldPass() {
+        assertEquals("TestAchternaam", test.getAchternaam());
+    }
+
+    @Test
+    void getEmailShouldPass() {
+        assertEquals("testemail@email.com", test.getEmail());
+    }
+
+    @Test
+    void getAfspraakVoorShouldPass() {
+        assertEquals("Heren", test.getAfspraakVoor());
+    }
+
+    @Test
+    void getAfspraakTypeShouldPass() {
+        assertEquals("Tondeuse", test.getAfspraakType());
+    }
+
+    @Test
+    void getAfspraakOpUUIDShouldWork() {
+        assertEquals(test, Afspraak.getAfspraakOpUuid(test.getUuid()));
+    }
+}
